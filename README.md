@@ -1,2 +1,2 @@
 # Sap2Opensees
-Data Exchange
+Data Exchange from Sap2000 to OpenSees
