@@ -1,6 +1,6 @@
 # Sap2Opensees
 
-	  作者：周迅
+		作者：周迅
 	  邮箱：702135971@qq.com
 	  语言：python 3.8.5
 
