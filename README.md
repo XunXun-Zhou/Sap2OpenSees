@@ -1,8 +1,8 @@
 # Sap2Opensees
 
-		作者：周迅
-	  邮箱：702135971@qq.com
-	  语言：python 3.8.5
+    作者：周迅
+    邮箱：702135971@qq.com
+    语言：python 3.8.5
 
     这段代码实现了由Sap2000至OpenSees的数据传递，目前已经对桥梁结构Sap模型进行了测试与优化。  
     先在Sap2000中建立好有限元模型，并以s2k文件格式导出，再通过这段代码就可以转成tcl文件。
@@ -28,7 +28,8 @@
     4、缆索单元的初始内力采用了初应变模拟，其准确度有待考证。
 
 
-    Due to time, some issues were simplified during program compilation。 Meanwhile, some details will inevitably be missed for different modeling habits, including
+    Due to time, some issues were simplified during program compilation.
+    Meanwhile, some details will inevitably be missed for different modeling habits, including
     
      1. The internal force of beam-column element under dead load is not considered;
      2. The link element only supports two types: damper and wen;
