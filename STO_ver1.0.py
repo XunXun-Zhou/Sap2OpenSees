@@ -152,13 +152,13 @@ searchtable = ['MATERIAL PROPERTIES 02 - BASIC MECHANICAL PROPERTIES',--------�
                'LINK PROPERTY DEFINITIONS 10 - PLASTIC (WEN)',----------------√
                'GROUPS 1 - DEFINITIONS',
                'GROUPS 2 - ASSIGNMENTS',
-               'JOINT RESTRAINT ASSIGNMENTS',
+               'JOINT RESTRAINT ASSIGNMENTS',---------------------------------√
                'JOINT COORDINATES',-------------------------------------------√
                'CONNECTIVITY - FRAME',----------------------------------------√
                'CONNECTIVITY - LINK',-----------------------------------------√
                'LINK PROPERTY ASSIGNMENTS',-----------------------------------√
                'JOINT CONSTRAINT ASSIGNMENTS',--------------------------------√
-               'JOINT SPRING ASSIGNMENTS 2 - COUPLED',
+               'JOINT SPRING ASSIGNMENTS 2 - COUPLED',------------------------√
                'FRAME SECTION ASSIGNMENTS',-----------------------------------√
                'FRAME RELEASE ASSIGNMENTS 1 - GENERAL',-----------------------√
                'FRAME LOCAL AXES ASSIGNMENTS 1 - TYPICAL',--------------------√
@@ -211,20 +211,27 @@ with open(filename) as f:
         if a == -1:
             print('s2k文件中没有定义质量信息    Mass Definition NOT Found')
         else:
-            with open('Mass.tcl', 'w') as M:
-                # 从第a行开始遍历
-                for line in lines[a:]:
-                    # 判断不是空行以及不是合计质量（SumAccel)
-                    if 'Sum' not in line and not line.isspace():
-                        result = line.split()
-                        n = result[0].split('=')[1]
-                        x = result[2].split('=')[1]
-                        y = result[3].split('=')[1]
-                        z = result[4].split('=')[1]
-                        M.write('mass ' + n + ' ' + x + ' ' + y + ' ' + z + ' 0 0 0' + '\n')
-                    else:
-                        print('节点质量文件已生成    Joint Mass File Has Been Created')
-                        break
+            M = open('Mass.tcl', 'w')
+            G = open('Gravity.tcl', 'w')
+            G.write('pattern Plain 1 Linear {' + '\n')
+            # 从第a行开始遍历
+            for line in lines[a:]:
+                # 判断不是空行以及不是合计质量（SumAccel)
+                if 'Sum' not in line and not line.isspace():
+                    result = line.split()
+                    n = result[0].split('=')[1]
+                    x = result[2].split('=')[1]
+                    y = result[3].split('=')[1]
+                    z = result[4].split('=')[1]
+                    M.write('mass ' + n + ' ' + x + ' ' + y + ' ' + z + ' 0 0 0' + '\n')
+                    G.write('    load' + ' ' + n + ' 0 0 ' + str( - float(z) * 9.81) + ' ' + ' 0 0 0' + '\n')
+                else:
+                    print('节点质量文件已生成    Joint Mass File Has Been Created')
+                    break
+            G.write('}' + '\n')
+            M.close()
+            G.close()
+
             # 指定内容下一行的行号
             a = SearchKeyword('MATERIAL PROPERTIES 02 - BASIC MECHANICAL PROPERTIES', lines)
             # 弹性材料特性为重要信息，若s2k中不存在该信息，则程序不再运行
