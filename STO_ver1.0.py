@@ -371,22 +371,22 @@ with open(filename) as f:
                                     v_y = GeomTransfVector(nodei[ele], nodej[ele])[1]
                                     v_z = GeomTransfVector(nodei[ele], nodej[ele])[2]
                                     if int(flag) == 1:
-                                        g.write('geomTransf Linear ' + n + ' ' + str(v_x) + ' ' + str(v_y) + ' ' + str(v_z) + '\n')
+                                        g.write('geomTransf Linear ' + ele + ' ' + str(v_x) + ' ' + str(v_y) + ' ' + str(v_z) + '\n')
                                     elif int(flag) == 2:
-                                        g.write('geomTransf PDelta ' + n + ' ' + str(v_x) + ' ' + str(v_y) + ' ' + str(v_z) + '\n')
+                                        g.write('geomTransf PDelta ' + ele + ' ' + str(v_x) + ' ' + str(v_y) + ' ' + str(v_z) + '\n')
                                     else:
-                                        g.write('geomTransf Corotational ' + n + ' ' + str(v_x) + ' ' + str(v_y) + ' ' + str(v_z) + '\n')
+                                        g.write('geomTransf Corotational ' + ele + ' ' + str(v_x) + ' ' + str(v_y) + ' ' + str(v_z) + '\n')
                                 else:
                                     # 如果定义了特殊的局部坐标轴
                                     v_x = GeomTransfVector(nodei[ele], nodej[ele], ele_local[ele])[0]
                                     v_y = GeomTransfVector(nodei[ele], nodej[ele], ele_local[ele])[1]
                                     v_z = GeomTransfVector(nodei[ele], nodej[ele], ele_local[ele])[2]
                                     if int(flag) == 1:
-                                        g.write('geomTransf Linear ' + n + ' ' + str(v_x) + ' ' + str(v_y) + ' ' + str(v_z) + '\n')
+                                        g.write('geomTransf Linear ' + ele + ' ' + str(v_x) + ' ' + str(v_y) + ' ' + str(v_z) + '\n')
                                     elif int(flag) == 2:
-                                        g.write('geomTransf PDelta ' + n + ' ' + str(v_x) + ' ' + str(v_y) + ' ' + str(v_z) + '\n')
+                                        g.write('geomTransf PDelta ' + ele + ' ' + str(v_x) + ' ' + str(v_y) + ' ' + str(v_z) + '\n')
                                     else:
-                                        g.write('geomTransf Corotational ' + n + ' ' + str(v_x) + ' ' + str(v_y) + ' ' + str(v_z) + '\n')
+                                        g.write('geomTransf Corotational ' + ele + ' ' + str(v_x) + ' ' + str(v_y) + ' ' + str(v_z) + '\n')
                         print('局部坐标文件已生成    Geomtransf File Has Been Created')
 
 
