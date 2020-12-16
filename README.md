@@ -25,7 +25,8 @@
     1、未考虑恒载作用下梁柱单元的内力；
     2、link单元暂时仅支持damper、wen两种类型；
     3、暂时未找到OpenSees中耦合节点弹簧单元，因此所有土弹簧都直接采用固接；
-    4、缆索单元的初始内力采用了初应变模拟，其准确度有待考证。
+    4、缆索单元的初始内力采用了初应变模拟，其准确度有待考证;
+    5、节点质量直接采用Sap2000中计算得到的结果，因此需要先跑一下模态分析。
 
 
     Due to time, some issues were simplified during program compilation.
@@ -35,4 +36,5 @@
      2. The link element only supports two types: damper and wen;
      3. The coupled nodal spring element has not been found(developed?) yet in OpenSees, so all boundaries are directly fixed;
      4. The initial internal force of the cable element is simulated by its initial strain, whose accuracy needs to be verified.
+     5. The nodal mass is calculated by SAP2000, so it is necessary to run modal analysis first.
     
